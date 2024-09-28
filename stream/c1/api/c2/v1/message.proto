@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package c2.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "c2/api/c2/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.c2.v1";
+option java_outer_classname = "c2ProtoV1";
+
+// 流式请求
+message StreamRequest{
+  string req = 1;
+}
+// 流式响应
+message StreamResponse{
+  string res = 1;
+}
+// 服务方法
+service Stream{
+  // 双向流式rpc，同时在请求参数前和响应参数前加上stream
+  rpc Conversations(stream StreamRequest) returns(stream StreamResponse){};
+}
+
